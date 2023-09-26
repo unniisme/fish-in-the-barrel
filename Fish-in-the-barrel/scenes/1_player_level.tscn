@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://rv2jt4soaanr"]
+
+[ext_resource type="Script" path="res://scripts/ProblemManager.gd" id="1_v0x28"]
+[ext_resource type="Script" path="res://scripts/BarrelManager.gd" id="2_sikug"]
+[ext_resource type="PackedScene" uid="uid://d3cp2anhi7fll" path="res://scenes/actors/barrel.tscn" id="3_6v651"]
+[ext_resource type="Script" path="res://scripts/FishDropArea.gd" id="4_087wr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrs7c"]
+size = Vector2(288, 174)
+
+[node name="1PlayerLevel" type="Node2D"]
+texture_filter = 1
+
+[node name="ProblemManager" type="Node2D" parent="."]
+script = ExtResource("1_v0x28")
+
+[node name="BarrelManager" type="Node2D" parent="ProblemManager"]
+script = ExtResource("2_sikug")
+
+[node name="Barrel" parent="ProblemManager/BarrelManager" instance=ExtResource("3_6v651")]
+position = Vector2(166, 0)
+
+[node name="Barrel2" parent="ProblemManager/BarrelManager" instance=ExtResource("3_6v651")]
+position = Vector2(109, 1)
+
+[node name="Barrel3" parent="ProblemManager/BarrelManager" instance=ExtResource("3_6v651")]
+position = Vector2(55, 0)
+
+[node name="Barrel4" parent="ProblemManager/BarrelManager" instance=ExtResource("3_6v651")]
+position = Vector2(1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-36, -49)
+zoom = Vector2(1.88, 1.88)
+
+[node name="FishDropArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("4_087wr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FishDropArea"]
+position = Vector2(80, -136)
+shape = SubResource("RectangleShape2D_hrs7c")
+
+[connection signal="move_confirmed" from="ProblemManager/BarrelManager" to="ProblemManager" method="_perform_move"]
+[connection signal="fish_landed" from="ProblemManager/BarrelManager/Barrel" to="ProblemManager/BarrelManager" method="_add_to_barrel"]
+[connection signal="marked" from="ProblemManager/BarrelManager/Barrel" to="ProblemManager/BarrelManager" method="_set_max_barrel"]
+[connection signal="fish_landed" from="ProblemManager/BarrelManager/Barrel2" to="ProblemManager/BarrelManager" method="_add_to_barrel"]
+[connection signal="marked" from="ProblemManager/BarrelManager/Barrel2" to="ProblemManager/BarrelManager" method="_set_max_barrel"]
+[connection signal="fish_landed" from="ProblemManager/BarrelManager/Barrel3" to="ProblemManager/BarrelManager" method="_add_to_barrel"]
+[connection signal="marked" from="ProblemManager/BarrelManager/Barrel3" to="ProblemManager/BarrelManager" method="_set_max_barrel"]
+[connection signal="fish_landed" from="ProblemManager/BarrelManager/Barrel4" to="ProblemManager/BarrelManager" method="_add_to_barrel"]
+[connection signal="marked" from="ProblemManager/BarrelManager/Barrel4" to="ProblemManager/BarrelManager" method="_set_max_barrel"]
+[connection signal="input_event" from="FishDropArea" to="FishDropArea" method="_on_input_event"]
