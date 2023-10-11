@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3cp2anhi7fll"]
+[gd_scene load_steps=10 format=3 uid="uid://d3cp2anhi7fll"]
 
 [ext_resource type="Texture2D" uid="uid://ctoelsf4aiks1" path="res://assets/barrel.png" id="1_6ad5l"]
 [ext_resource type="Script" path="res://scenes/actors/barrel.gd" id="1_qnhlb"]
 [ext_resource type="Texture2D" uid="uid://cpdcfgo0wwr58" path="res://assets/barrel_lid.png" id="2_ajcjp"]
+[ext_resource type="PackedScene" uid="uid://cdnfseit3bm67" path="res://scenes/actors/wighing_machine.tscn" id="4_hp27v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_arg75"]
 size = Vector2(2.5, 56)
@@ -45,7 +46,7 @@ shape = SubResource("RectangleShape2D_804rh")
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_w515b")
 
-[node name="Lid" type="StaticBody2D" parent="."]
+[node name="Lid" type="AnimatableBody2D" parent="."]
 position = Vector2(19, -25)
 
 [node name="Sprite2D" type="Sprite2D" parent="Lid"]
@@ -56,5 +57,8 @@ texture = ExtResource("2_ajcjp")
 position = Vector2(-19.5, -2.5)
 shape = SubResource("RectangleShape2D_vhlyk")
 
-[connection signal="body_entered" from="." to="." method="_on_fish_entered"]
+[node name="Wighing Machine" parent="." node_paths=PackedStringArray("barrel") instance=ExtResource("4_hp27v")]
+position = Vector2(0, 18)
+barrel = NodePath("..")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]

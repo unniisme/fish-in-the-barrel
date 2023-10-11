@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://s2neidorv43e"]
+
+[ext_resource type="Texture2D" uid="uid://8c78a6h31ans" path="res://assets/sling.png" id="1_5y6tv"]
+[ext_resource type="Script" path="res://scenes/actors/slingshot.gd" id="1_rcjeb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4k222"]
+size = Vector2(20, 27)
+
+[node name="Slingshot" type="Area2D"]
+script = ExtResource("1_rcjeb")
+cutoff = 70
+force = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_4k222")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5y6tv")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

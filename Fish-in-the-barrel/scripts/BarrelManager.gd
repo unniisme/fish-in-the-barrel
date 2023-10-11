@@ -1,43 +1,72 @@
 class_name BarrelManager extends Node2D
 
-@export var N = 4
+# To be necessarily attached game manager
 
-var barrels = []
+enum STATE {INIT, CHOOSING, ADDING}
 
-var overhead_array = []
+var N = 4
 var max_barrel = -1
-
-signal move_confirmed(max_barrel : int, overhead_array : Array)
+var problem : FishProblem
+var state = STATE.INIT
+var barrels : Array[Barrel] = []
 
 func _ready():
-	_empty_overhead()
-	
-	barrels = get_children()
-	var i = 0
-	for barrel in barrels:
-		barrel.id = i
-		i += 1
-	
-func _empty_overhead():
-	for i in range(N):
-		if overhead_array.size() <= i:
-			overhead_array.append(0)
-		else:
-			overhead_array[i] = 0
-
-func _set_max_barrel(n : int):
-	max_barrel = n
-	for i in range(n):
-		barrels[i]._open()
-	for i in range(n, N):
-		barrels[i]._close()
+	for child in get_children():
+		var barrel := child as Barrel # Typecast nonsense
+		barrels.append(barrel)
+	N = barrels.size() 
 		
-	if overhead_array.reduce(func(a,b): return a+b, 0) != 0:
-		_confirm_move()
+	for i in range(N):
+		barrels[i].id = i
 	
-func _add_to_barrel(i : int):
-	overhead_array[i] += 1
+	_connect_barrels()
 	
-func _confirm_move():
-	emit_signal("move_confirmed", max_barrel, overhead_array)
-	_empty_overhead()
+func _process(delta):
+	if Input.is_action_just_pressed("Action1"):
+		handle_action()
+	
+func _connect_barrels():
+	# Connect the "touched" signal of each barrel to handler in barrel manager
+	for barrel in barrels:
+		barrel.touched.connect(barrel_touched)
+
+func barrel_touched(id : int):
+	# Handle the input from the barrel depending on the state of the game
+	if state == STATE.INIT:
+		barrels[id]._toggle_lid()
+	
+	elif state == STATE.CHOOSING:
+		if problem.barrels[id].get_count() == 0:
+			return
+		
+		for i in range(id+1):
+			problem.barrels[i]._close()
+		for i in range(id+1, N):
+			problem.barrels[i]._open()
+		max_barrel = id
+		problem.barrels[id]._pop_fish()
+		
+		print("Choosing barrel %d, add fishes" % id)
+		state = STATE.ADDING
+
+func handle_action():
+	if state == STATE.INIT:
+		problem = FishProblem.new(N, barrels)
+		print(problem)
+		state = STATE.CHOOSING
+	
+	elif state == STATE.ADDING:
+		for barrel in problem.barrels:
+			barrel._close()
+		problem.assert_move()
+		
+		if problem.is_over():
+			print("Game completed")
+			get_tree().quit()
+			
+		max_barrel = -1
+		state = STATE.CHOOSING
+		
+	print("Choose a barrel")
+		
+		
