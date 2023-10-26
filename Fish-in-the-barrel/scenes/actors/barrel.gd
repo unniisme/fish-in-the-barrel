@@ -5,7 +5,6 @@ const PI = 3.14159265
 var id : int;
 @onready var lid = $Lid
 var is_open = false
-var count = 0
 var fishes : Array[Node2D]
 
 @export var lid_hinge_k = 20

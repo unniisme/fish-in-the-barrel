@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwahg2drhcb5t"]
+
+[ext_resource type="Script" path="res://scripts/GameManger.gd" id="1_dy4ol"]
+[ext_resource type="PackedScene" uid="uid://s2neidorv43e" path="res://scenes/actors/slingshot.tscn" id="2_seix4"]
+
+[node name="Manger" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dy4ol")
+gameMode = 2
+
+[node name="Turn Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 182.0
+offset_top = -161.0
+offset_right = 276.0
+offset_bottom = -130.0
+grow_horizontal = 0
+text = "Finish Turn"
+
+[node name="PlayerInfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 211.0
+offset_top = -128.0
+offset_right = 251.0
+offset_bottom = -105.0
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Slingshot" parent="." instance=ExtResource("2_seix4")]
+position = Vector2(-145, -31)
+
+[connection signal="button_down" from="Turn Button" to="." method="_end_move"]

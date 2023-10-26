@@ -1,0 +1,79 @@
+[gd_scene load_steps=3 format=3 uid="uid://gry6ap8rwlta"]
+
+[ext_resource type="Script" path="res://scenes/GUI/MainMenu.gd" id="1_lf7fm"]
+[ext_resource type="Script" path="res://scenes/GUI/load_level.gd" id="1_qa8cn"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lf7fm")
+
+[node name="1p" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Single Player"
+script = ExtResource("1_qa8cn")
+scene = "res://scenes/1_player_level.tscn"
+
+[node name="2p" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = 24.0
+offset_right = 53.5
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2 Player
+"
+script = ExtResource("1_qa8cn")
+scene = "res://scenes/2_player_level.tscn"
+
+[node name="pve" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = 64.0
+offset_right = 53.5
+offset_bottom = 95.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player vs AI"
+script = ExtResource("1_qa8cn")
+scene = "res://scenes/ai_level_hard.tscn"
+
+[node name="message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -87.0
+offset_right = 20.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2

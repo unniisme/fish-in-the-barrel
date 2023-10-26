@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Fish-in-the-barrel"
-run/main_scene="res://scenes/1_player_level.tscn"
+run/main_scene="res://scenes/GUI/MainMenu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
