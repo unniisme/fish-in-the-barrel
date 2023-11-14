@@ -42,3 +42,4 @@ Action2={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.843183, 0.592081, 0.450889, 1)

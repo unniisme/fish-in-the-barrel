@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://daqbfpbt5crtd"]
 
-[ext_resource type="Script" path="res://scenes/actors/sling_shot_ai.gd" id="1_y7m2s"]
+[ext_resource type="Script" path="res://scripts/Agents/sling_shot_ai.gd" id="1_y7m2s"]
 
 [node name="SlingShotAI" type="Node2D"]
 script = ExtResource("1_y7m2s")

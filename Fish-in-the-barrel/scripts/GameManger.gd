@@ -11,10 +11,19 @@ enum GAMEMODE {PVP, PVE, ONEPLAYER}
 
 @export var gameMode : GAMEMODE
 
+## Only for AI gamemodes 
+@export_category("AI properties")
+@export_range(0,1) var chance_agent_p_choose : float
+@export_range(0,1) var chance_agent_p_add : float
+@export_range(0,2) var slingshot_agent_temparature_x : float
+@export_range(0,2) var slingshot_agent_temparature_y : float
+
+
 @onready var barrelManager : BarrelManager = $BarrelManager
 @onready var playerInfo : Label = $PlayerInfo
 @onready var slingshot : Slingshot = $Slingshot
 var agent : Agent
+var slingShotAgent : SlingShotAgent
 
 var playing = false # true - player 0 playing. false - player 1 playing.
 var move_locked = false
@@ -24,7 +33,11 @@ var stats : GameStats = GameStats.new()
 
 func _ready():
 	if gameMode == GAMEMODE.PVE:
-		agent = Agent.new(barrelManager.problem)
+		agent = ChanceAgent.new(barrelManager.problem, chance_agent_p_choose, chance_agent_p_add)
+#		slingShotAgent = SlingShotAgent.new(slingshot, barrelManager)
+		slingShotAgent = ChanceSlingShotAgent.new(slingshot, barrelManager,
+													slingshot_agent_temparature_x,
+													slingshot_agent_temparature_y)
 		
 	_handle_player_action()
 
@@ -60,7 +73,8 @@ func _do_AI_move():
 	# Fire into each required barrel
 	for i in range(max_barrel, move.size()):
 		if move[i] > 0:
-			slingshot.shoot_to_barrel(i)
+#			slingshot.shoot_to_barrel(i)
+			slingShotAgent._do_slingshot(barrelManager.barrels[i])
 			await get_tree().create_timer(1).timeout
 			
 	await get_tree().create_timer(1).timeout

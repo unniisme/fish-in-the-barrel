@@ -47,7 +47,7 @@ text = "2 Player
 script = ExtResource("1_qa8cn")
 scene = "res://scenes/2_player_level.tscn"
 
-[node name="pve" type="Button" parent="."]
+[node name="pve_hard" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -60,9 +60,26 @@ offset_right = 53.5
 offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Player vs AI"
+text = "Player vs AI Hard"
 script = ExtResource("1_qa8cn")
 scene = "res://scenes/ai_level_hard.tscn"
+
+[node name="pve2_easy" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = 106.0
+offset_right = 55.0
+offset_bottom = 137.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Player vs AI Easy "
+script = ExtResource("1_qa8cn")
+scene = "res://scenes/ai_level_easy.tscn"
 
 [node name="message" type="Label" parent="."]
 layout_mode = 1

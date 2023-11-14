@@ -5,6 +5,7 @@ class_name Slingshot extends Area2D
 var fishScene = load("res://scenes/actors/fish.tscn")
 
 var focusing = false
+var take_input = true
 var mouse_pos = Vector2(0,0)
 var shoot_velocity = Vector2(0,0)
 
@@ -21,16 +22,16 @@ var shoot_velocity = Vector2(0,0)
 
 
 func _physics_process(delta):
-	if focusing:
+	if focusing and take_input:
 		_update_mouse_pos(get_local_mouse_position())
 		
 		if Input.is_action_just_released("Sling"):
 			
-			shoot(shoot_velocity)
+			shoot()
 			
 			focusing = false
 
-func shoot(shoot_velocity : Vector2):
+func shoot():
 	var fish_instance : RigidBody2D = fishScene.instantiate()
 	add_child(fish_instance)
 	fish_instance.linear_velocity = shoot_velocity
@@ -58,7 +59,7 @@ func _draw():
 		var t = i * time_gap
 		var pos = (0.5 * g_vector * t * t + shoot_velocity * t)/g
 		
-		draw_circle(pos, 2, Color.RED)
+		draw_circle(pos, 2, Color.BLACK)
 	
 	
 	

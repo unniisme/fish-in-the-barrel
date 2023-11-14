@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://rv2jt4soaanr"]
+[gd_scene load_steps=6 format=3 uid="uid://rv2jt4soaanr"]
 
 [ext_resource type="PackedScene" uid="uid://cwahg2drhcb5t" path="res://scenes/prefabs/managed_instance.tscn" id="1_8yj2x"]
 [ext_resource type="Script" path="res://scripts/BarrelManager.gd" id="2_sikug"]
 [ext_resource type="PackedScene" uid="uid://d3cp2anhi7fll" path="res://scenes/actors/barrel.tscn" id="3_6v651"]
 [ext_resource type="PackedScene" uid="uid://cden31s011sea" path="res://scenes/actors/fish.tscn" id="4_l0d0q"]
+[ext_resource type="PackedScene" uid="uid://s2neidorv43e" path="res://scenes/actors/slingshot.tscn" id="5_6jksl"]
 
 [node name="1PlayerLevel" type="Node2D"]
 texture_filter = 1
 
 [node name="Manager" parent="." instance=ExtResource("1_8yj2x")]
+script = null
 
 [node name="BarrelManager" type="Node2D" parent="Manager"]
 script = ExtResource("2_sikug")
@@ -24,6 +26,9 @@ position = Vector2(153, 1)
 
 [node name="Barrel4" parent="Manager/BarrelManager" instance=ExtResource("3_6v651")]
 position = Vector2(224, 1)
+
+[node name="Slingshot" parent="Manager" instance=ExtResource("5_6jksl")]
+position = Vector2(-144, -32)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(78, -72)

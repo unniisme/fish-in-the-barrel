@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://blnqponwtw7dy"]
+[gd_scene load_steps=6 format=3 uid="uid://blnqponwtw7dy"]
 
 [ext_resource type="PackedScene" uid="uid://cwahg2drhcb5t" path="res://scenes/prefabs/managed_instance.tscn" id="2_3pwkb"]
 [ext_resource type="Script" path="res://scripts/BarrelManager.gd" id="2_vkxyp"]
 [ext_resource type="PackedScene" uid="uid://d3cp2anhi7fll" path="res://scenes/actors/barrel.tscn" id="3_4c2et"]
 [ext_resource type="PackedScene" uid="uid://cden31s011sea" path="res://scenes/actors/fish.tscn" id="5_3ebvd"]
+[ext_resource type="PackedScene" uid="uid://s2neidorv43e" path="res://scenes/actors/slingshot.tscn" id="5_runjj"]
 
 [node name="1PlayerLevel" type="Node2D"]
 texture_filter = 1
@@ -61,3 +62,6 @@ position = Vector2(160, 14)
 
 [node name="fish10" parent="Starting Fishes" instance=ExtResource("5_3ebvd")]
 position = Vector2(230, 2)
+
+[node name="Slingshot" parent="." instance=ExtResource("5_runjj")]
+position = Vector2(-144, -32)

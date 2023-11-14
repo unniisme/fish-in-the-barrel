@@ -1,6 +1,4 @@
-extends Node2D
-
-# To be necessarily attached game manager
+class_name SlingShotAgent
 
 ## Shoots slingshot into required barrel
 
@@ -11,14 +9,11 @@ var g
 @export var max_height = 150
 @export var modifier = 1.15
 
-func _ready():
-	slingShot = get_node("../Slingshot")
-	assert(slingShot != null, "No Slingshot")
+func _init(slingShot : Slingshot, barrelManager : BarrelManager):
+	self.slingShot = slingShot 
+	self.barrelManager = barrelManager
 	
 	g = slingShot.g
-	
-	barrelManager = get_node("../BarrelManager")
-	assert(barrelManager != null, "No BarrelManager")
 	
 
 func _do_slingshot(barrel : Barrel):
