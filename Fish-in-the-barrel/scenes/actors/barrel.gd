@@ -7,6 +7,8 @@ var id : int;
 var is_open = false
 var fishes : Array[Node2D]
 
+var diameter : float
+
 @export var lid_hinge_k = 20
 
 signal touched(id : int)

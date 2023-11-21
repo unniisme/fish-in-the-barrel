@@ -10,7 +10,7 @@
 texture_filter = 1
 
 [node name="Manager" parent="." instance=ExtResource("1_8yj2x")]
-script = null
+gameMode = 0
 
 [node name="BarrelManager" type="Node2D" parent="Manager"]
 script = ExtResource("2_sikug")

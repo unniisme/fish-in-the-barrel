@@ -22,6 +22,7 @@ enum GAMEMODE {PVP, PVE, ONEPLAYER}
 @onready var barrelManager : BarrelManager = $BarrelManager
 @onready var playerInfo : Label = $PlayerInfo
 @onready var slingshot : Slingshot = $Slingshot
+@onready var stats : GameStats = $GameStats
 var agent : Agent
 var slingShotAgent : SlingShotAgent
 
@@ -29,7 +30,6 @@ var playing = false # true - player 0 playing. false - player 1 playing.
 var move_locked = false
 
 # Statistics
-var stats : GameStats = GameStats.new()
 
 func _ready():
 	if gameMode == GAMEMODE.PVE:
@@ -85,9 +85,16 @@ func _do_AI_move():
 func _end_move():
 	if move_locked:
 		return
+		
+	if barrelManager.problem:
+		stats._update_state(barrelManager.problem._barrel_count_cache, _currently_playing())
 	
 	# Update problem
 	var made_move = barrelManager.handle_action()
+	
+	# Summarise
+	if barrelManager.problem:
+		stats._update_move([])
 	
 	# end game
 	if barrelManager.problem.is_over():
@@ -113,4 +120,9 @@ func update_problem(problem : FishProblem):
 		agent.problem = problem
 		
 func _exit_to_menu():
+	print("Quiting to main menu")
+	
+	## Send summary
+	stats._summarise()
+	
 	get_tree().change_scene_to_file("res://scenes/GUI/MainMenu.tscn")
