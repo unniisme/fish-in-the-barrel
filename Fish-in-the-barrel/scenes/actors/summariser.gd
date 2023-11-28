@@ -14,13 +14,12 @@ const LOGLEVELS = {
 
 var send_queue : Array = []
 
-#func _ready():
+func _ready():
 	
-#	http_request.set_http_proxy(address, 5000)
+	connect("request_completed", _handle_request_completed)
+	
+#	set_http_proxy(server_address, 5000)
 
-func _process(delta):
-	# Keep sending queued data
-	while _send_data_dequeue(): pass
 
 static func _encode_dict(table : String, data : Dictionary):
 	return JSON.stringify({"table" : table, "data" : data})
@@ -28,29 +27,31 @@ static func _encode_dict(table : String, data : Dictionary):
 func _send_data(table : String, data : Dictionary):
 	# Push message to queue
 	send_queue.push_back([table, data])
+	_send_data_dequeue()
 
-func _send_request(table : String, data : Dictionary):
+func _send_request(table : String, data : Dictionary) -> Error:
 	var send_data = _encode_dict(table, data)
 	var url = server_address + "/save"
 	return request(url, [], HTTPClient.METHOD_POST, send_data)
 	
-func _send_data_dequeue():
+func _send_data_dequeue() -> bool:
 	if send_queue.is_empty():
-		return
+		return true
 		
 	var msg = send_queue.pop_front()
 	var table = msg[0]
 	var data = msg[1]
 	
-	if _send_request(table, data) == ERR_BUSY:
-		send_queue.push_front(msg)
+	var status = _send_request(table, data)
+	if status != OK:
+		send_queue.append(msg)
 		return false
-		
 	return true
+		
 	
 	
 func _log(message, level):
-	var log = { Time.get_time_string_from_system() :
+	var log = { Time.get_unix_time_from_system() :
 				{
 					"message" : message,
 					"level" : level
@@ -58,3 +59,10 @@ func _log(message, level):
 			}
 	_send_data("log", log)
 	
+func _wait_for_empty_queue():
+	# Blocks thread until send queue is empty
+	while not _send_data_dequeue():
+		pass
+
+func _handle_request_completed(result, response_code, header, body):
+	_send_data_dequeue()

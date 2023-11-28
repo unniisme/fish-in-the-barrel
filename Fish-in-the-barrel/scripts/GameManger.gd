@@ -88,8 +88,9 @@ func _end_move():
 		return
 		
 	if barrelManager.problem:
+		print("Here")
 		stats._log(
-			"Updating stat with following :\n" + str(barrelManager.problem._barrel_count_cache),
+			"Updating stat with following :" + str(barrelManager.problem._barrel_count_cache),
 			Summariser.LOGLEVELS.DEBUG)
 		stats._update_state(barrelManager.problem._barrel_count_cache, _currently_playing())
 	

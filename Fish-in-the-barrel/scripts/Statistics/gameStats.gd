@@ -30,4 +30,4 @@ func _update_move(move : Array[int]):
 	
 func _summarise():
 	_log("Summarizing", LOGLEVELS.INFO)
-#	_send_data("gamestat", game_states)
+	_send_data("gamestat", game_states)

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://s2neidorv43e" path="res://scenes/actors/slingshot.tscn" id="4_pnpko"]
 [ext_resource type="PackedScene" uid="uid://cden31s011sea" path="res://scenes/actors/fish.tscn" id="5_lgj17"]
 
-[node name="1PlayerLevel" type="Node2D"]
+[node name="ai_easy" type="Node2D"]
 texture_filter = 1
 
 [node name="Manager" parent="." instance=ExtResource("1_uyify")]
