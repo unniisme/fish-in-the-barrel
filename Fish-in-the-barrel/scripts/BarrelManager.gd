@@ -18,6 +18,10 @@ func _ready():
 		
 	for i in range(N):
 		barrels[i].id = i
+		
+	# Initialize problem
+	problem = FishProblem.new(N, barrels)
+	print(problem)
 	
 	_connect_barrels()
 	
@@ -53,8 +57,8 @@ func barrel_touched(id : int):
 
 func handle_action() -> bool:
 	if state == STATE.INIT:
-		problem = FishProblem.new(N, barrels)
-		print(problem)
+		problem._update_barrel_cache()
+		
 		state = STATE.CHOOSING
 		get_parent().update_problem(problem) # update in problem manager
 		

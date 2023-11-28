@@ -19,6 +19,10 @@ func _update_barrel_cache():
 	self._barrel_count_cache = []
 	for barrel in barrels:
 		self._barrel_count_cache.append(barrel.get_count()) 
+		
+func _get_count(barrel_id : int) -> int:
+	# Returns the number of fishes in the given barrel, at the current state of the problem
+	return _barrel_count_cache[barrel_id]
 
 func copy() -> FishProblem:
 	return FishProblem.new(self.n, self.barrels)

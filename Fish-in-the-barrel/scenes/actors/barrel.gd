@@ -7,7 +7,7 @@ var id : int;
 var is_open = false
 var fishes : Array[Node2D]
 
-var diameter : float
+@onready var diameter : float = abs(position.x - lid.position.x)*2
 
 @export var lid_hinge_k = 20
 

@@ -11,10 +11,8 @@ texture_filter = 1
 
 [node name="Manager" parent="." instance=ExtResource("1_uyify")]
 gameMode = 1
-chance_agent_p_choose = 0.765
-chance_agent_p_add = 0.705
-slingshot_agent_temparature_x = 0.233
-slingshot_agent_temparature_y = 0.174
+chance_agent_p = 0.209
+slingshot_agent_p = 0.888
 
 [node name="BarrelManager" type="Node2D" parent="Manager"]
 script = ExtResource("2_kvpvd")

@@ -1,19 +1,13 @@
 class_name ChanceAgent extends Agent
 # Agent that has uncertainity in choosing barrel and deciding the number of fishes
 
-var p_choose : float
-var p_add : float
+var alpha : float
 
-func _init(problem : FishProblem, p_choose : float, p_add : float ):
+func _init(problem : FishProblem, alpha : float):
 	self.problem = problem
 	
-	# probability that a barrel might be chosen regardless of if it's the best move
-	self.p_choose = p_choose
-	
-	# Probability that the number of fishes added is +1 or -1 from the best choice
-	# p_add/2 is probability that a fish is added, 
-	# p_add/2 is the probability that a fish is subtracted
-	self.p_add = p_add
+	# Probability of choosing the correct barrel
+	self.alpha = alpha
 
 # Function that returns the best move predicted by the agent
 ## returns a list with one entry for each barrel. The barrel chosen to take
@@ -22,52 +16,84 @@ func _init(problem : FishProblem, p_choose : float, p_add : float ):
 func get_move() -> Array[int]:
 	var outlist : Array[int] = []
 	var found_first = false
-	for barrel in problem.barrels:
-		var count = barrel.get_count()
-		
-		var choose_override = _toss(self.p_choose)
-		var add_override = _toss(self.p_add)
-		
-		# Add to barrel if it is odd
-		if found_first:
-			var add_value = 0
-			if count%2:
-				add_value += 1
-				if add_override:
-					if _toss(0.5):
-						add_value += 1
-					else:
-						add_value -= 1
-					
-			else:
-				if add_override:
-					add_value += 1
-					
-			outlist.append(add_value)
-		
-		# barrel to deduct from
-		elif count%2 or (choose_override and count != 0):
-			outlist.append(-1)
-			found_first = true
-		
-		# all barrels before max barrel
-		else:
-			outlist.append(0)
 	
-	# If no candidate found, simply deduct from the furthest barrel
-	if not found_first:
-		var last_index = problem.n - 1
-		while last_index > 0:
-			if problem.barrels[last_index].get_count() > 0:
-				outlist[last_index] = -1
-				break
-			last_index -= 1
+	var max_barrel = -1
+	
+	var barrel_choose_distribution : Array[float] = []
+	for barrel in problem.barrels:
+		outlist.append(0)
+		
+		var count = barrel.get_count()
+		if count == 0:
+			barrel_choose_distribution.append(0)
+		elif count%2 and not found_first:
+			found_first = true
+			barrel_choose_distribution.append(0)
+			max_barrel = barrel.id
+		else:
+			barrel_choose_distribution.append(1)
+	
+	if max_barrel == -1:
+		var barrel_choose_probability = 1/(
+			barrel_choose_distribution.reduce(func (a,b) : return a+b, 0)
+			)
+		for i in range(problem.n):
+			if barrel_choose_distribution[i] == 1:
+				barrel_choose_distribution[i] = barrel_choose_probability
+	else:
+		var max_probability = pow(self.alpha, max_barrel+1)
+		var barrel_choose_probability = (1 - max_probability)/(
+			barrel_choose_distribution.reduce(func (a,b) : return a+b, 0)
+			)
+		for i in range(problem.n):
+			if barrel_choose_distribution[i] == 1:
+				barrel_choose_distribution[i] = barrel_choose_probability
+		barrel_choose_distribution[max_barrel] = max_probability
+		
+	print("[unsure] choose dist = " + str(barrel_choose_distribution))
+	max_barrel = _random_sample(barrel_choose_distribution)
+		
+	print("[unsure] choosing " + str(max_barrel))
+	
+	outlist[max_barrel] = -1
+	
+	for i in range(max_barrel+1, problem.n):
+		var correct_choice = _toss(self.alpha)
+		var is_even = problem.barrels[i].get_count()%2 == 0
+		
+		print("[unsure] barrel = " + str(i) + " correct_choice = " + str(correct_choice))
+		
+		if (correct_choice == is_even):
+			outlist[i] = 0
+		else:
+			outlist[i] = 1
+		
 	
 	_asser_answer_consistency(outlist)
 	return outlist
 	
-#Toss a coin with the given probability of true
-func _toss(p : float):
+func _toss(probability : float) ->  bool:
+	assert(probability <= 1)
 	
-	return randf() < p
+	return randf() < probability
+	
+func _random_sample(probabilities: Array[float]) -> int:
+	assert(probabilities.reduce(func(a,b): return a+b, 0) <= 1, "Distribution not valid")
+	
+	var random_value = randf()
+	var cumulative_prob = 0.0
+	
+	for i in range(probabilities.size()):
+		cumulative_prob += probabilities[i]
+		if random_value < cumulative_prob:
+			return i
+
+	# If the loop completes without selecting, return -1
+	return -1
+	
+func _set_correct_probabilities(p : float):
+	print("[unsure_agent][_set_correct_p] p = " + str(p))
+	self.alpha = pow(p, 1.0/self.problem.n)
+	print("[unsure_agent][_set_correct_p] alpha = " + str(self.alpha))
+	
 	

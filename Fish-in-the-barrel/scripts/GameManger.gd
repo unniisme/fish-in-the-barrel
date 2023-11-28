@@ -13,10 +13,8 @@ enum GAMEMODE {PVP, PVE, ONEPLAYER}
 
 ## Only for AI gamemodes 
 @export_category("AI properties")
-@export_range(0,1) var chance_agent_p_choose : float
-@export_range(0,1) var chance_agent_p_add : float
-@export_range(0,2) var slingshot_agent_temparature_x : float
-@export_range(0,2) var slingshot_agent_temparature_y : float
+@export_range(0,1) var chance_agent_p : float
+@export_range(0,1) var slingshot_agent_p : float
 
 
 @onready var barrelManager : BarrelManager = $BarrelManager
@@ -33,12 +31,15 @@ var move_locked = false
 
 func _ready():
 	if gameMode == GAMEMODE.PVE:
-		agent = ChanceAgent.new(barrelManager.problem, chance_agent_p_choose, chance_agent_p_add)
-#		slingShotAgent = SlingShotAgent.new(slingshot, barrelManager)
-		slingShotAgent = ChanceSlingShotAgent.new(slingshot, barrelManager,
-													slingshot_agent_temparature_x,
-													slingshot_agent_temparature_y)
+		agent = ChanceAgent.new(barrelManager.problem, 1)
+		agent._set_correct_probabilities(chance_agent_p)
+		print("[chance agent] alpha = " + str(agent.alpha))
 		
+		slingShotAgent = ChanceSlingShotAgent.new(slingshot, barrelManager, 0)
+		slingShotAgent._set_correct_probability(slingshot_agent_p)
+		print("[slingshot agent] gamma = " + str(slingShotAgent.gamma))
+	
+	stats._log(get_tree().get_current_scene().get_name(), Summariser.LOGLEVELS.INFO)
 	_handle_player_action()
 
 func _process(delta):
@@ -87,6 +88,9 @@ func _end_move():
 		return
 		
 	if barrelManager.problem:
+		stats._log(
+			"Updating stat with following :\n" + str(barrelManager.problem._barrel_count_cache),
+			Summariser.LOGLEVELS.DEBUG)
 		stats._update_state(barrelManager.problem._barrel_count_cache, _currently_playing())
 	
 	# Update problem
@@ -124,5 +128,7 @@ func _exit_to_menu():
 	
 	## Send summary
 	stats._summarise()
+	
+#	stats._wait_for_empty_queue()
 	
 	get_tree().change_scene_to_file("res://scenes/GUI/MainMenu.tscn")
