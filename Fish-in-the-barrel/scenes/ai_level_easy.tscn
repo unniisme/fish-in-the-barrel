@@ -11,7 +11,7 @@ texture_filter = 1
 
 [node name="Manager" parent="." instance=ExtResource("1_uyify")]
 gameMode = 1
-chance_agent_p = 0.209
+chance_agent_p = 0.182
 slingshot_agent_p = 0.888
 
 [node name="BarrelManager" type="Node2D" parent="Manager"]

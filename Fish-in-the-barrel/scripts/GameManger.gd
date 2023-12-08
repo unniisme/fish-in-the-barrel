@@ -34,10 +34,16 @@ func _ready():
 		agent = ChanceAgent.new(barrelManager.problem, 1)
 		agent._set_correct_probabilities(chance_agent_p)
 		print("[chance agent] alpha = " + str(agent.alpha))
+		stats._log(
+			"[chance agent] alpha = " + str(agent.alpha),
+			Summariser.LOGLEVELS.DEBUG)
 		
 		slingShotAgent = ChanceSlingShotAgent.new(slingshot, barrelManager, 0)
 		slingShotAgent._set_correct_probability(slingshot_agent_p)
 		print("[slingshot agent] gamma = " + str(slingShotAgent.gamma))
+		stats._log(
+			"[slingshot agent] gamma = " + str(slingShotAgent.gamma),
+			Summariser.LOGLEVELS.DEBUG)
 	
 	stats._log(get_tree().get_current_scene().get_name(), Summariser.LOGLEVELS.INFO)
 	_handle_player_action()

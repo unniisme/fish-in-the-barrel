@@ -51,13 +51,16 @@ func get_move() -> Array[int]:
 		barrel_choose_distribution[max_barrel] = max_probability
 		
 	print("[unsure] choose dist = " + str(barrel_choose_distribution))
-	max_barrel = _random_sample(barrel_choose_distribution)
+	var max_barrel_chosen = _random_sample(barrel_choose_distribution)
+	if max_barrel_chosen == -1: #Only occurs if max barrel is the only choice
+		max_barrel_chosen = max_barrel
+	
 		
-	print("[unsure] choosing " + str(max_barrel))
+	print("[unsure] choosing " + str(max_barrel_chosen))
 	
-	outlist[max_barrel] = -1
+	outlist[max_barrel_chosen] = -1
 	
-	for i in range(max_barrel+1, problem.n):
+	for i in range(max_barrel_chosen+1, problem.n):
 		var correct_choice = _toss(self.alpha)
 		var is_even = problem.barrels[i].get_count()%2 == 0
 		

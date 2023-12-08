@@ -1,12 +1,11 @@
 from agents import EvenAgent
-from agents import FishProblemMinMaxAgent
 from games import FishGame
 from problem import FishProblem
 
 # problem = FishProblem(4, 4,5,3,1)
 problem = FishProblem(4, 4,5,3,1)
 game = FishGame(problem)
-agent = FishProblemMinMaxAgent(problem)
+agent = EvenAgent(problem)
 
 while not game.players.IsWon():
     print(problem)

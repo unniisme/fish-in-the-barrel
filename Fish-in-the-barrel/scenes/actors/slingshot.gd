@@ -16,6 +16,8 @@ var shoot_velocity = Vector2(0,0)
 @export_category("Draw properties")
 @export var num_points = 10
 @export var time_gap = 100
+@export var fade = 0.85	
+@export var draw_mod = 0.97 
 
 @onready var g_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 @onready var g = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -55,11 +57,14 @@ func _on_input_event(viewport, event : InputEvent, shape_idx):
 
 func _draw():
 	
+	var alpha = 1
 	for i in range(num_points):
 		var t = i * time_gap
-		var pos = (0.5 * g_vector * t * t + shoot_velocity * t)/g
-		
-		draw_circle(pos, 2, Color.BLACK)
+		var pos = (0.5 * g_vector * t * t + draw_mod * shoot_velocity * t)/g
+	
+		var col = Color(0,0,0,alpha)
+		draw_circle(pos, 2, col)
+		alpha *= fade
 	
 	
 	
