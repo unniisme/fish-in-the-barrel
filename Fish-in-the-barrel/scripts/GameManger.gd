@@ -18,7 +18,7 @@ enum GAMEMODE {PVP, PVE, ONEPLAYER}
 
 
 @onready var barrelManager : BarrelManager = $BarrelManager
-@onready var playerInfo : Label = $PlayerInfo
+@onready var playerInfo : Label = $CanvasLayer/PlayerInfo
 @onready var slingshot : Slingshot = $Slingshot
 @onready var stats : GameStats = $GameStats
 var agent : Agent

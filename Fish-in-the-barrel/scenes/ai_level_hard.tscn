@@ -1,69 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlvduirvifimg"]
+[gd_scene load_steps=2 format=3 uid="uid://b3w5es14xksy"]
 
-[ext_resource type="PackedScene" uid="uid://cwahg2drhcb5t" path="res://scenes/prefabs/managed_instance.tscn" id="2_7no3f"]
-[ext_resource type="Script" path="res://scripts/BarrelManager.gd" id="2_rmby1"]
-[ext_resource type="PackedScene" uid="uid://d3cp2anhi7fll" path="res://scenes/actors/barrel.tscn" id="3_oyisj"]
-[ext_resource type="PackedScene" uid="uid://s2neidorv43e" path="res://scenes/actors/slingshot.tscn" id="5_fy8uw"]
-[ext_resource type="PackedScene" uid="uid://cden31s011sea" path="res://scenes/actors/fish.tscn" id="5_nin11"]
+[ext_resource type="PackedScene" uid="uid://bjdvunmehsq6l" path="res://scenes/ai_level_easy.tscn" id="1_n1qk2"]
 
-[node name="ai_hard" type="Node2D"]
-texture_filter = 1
+[node name="AILevelHard" instance=ExtResource("1_n1qk2")]
 
-[node name="Manager" parent="." instance=ExtResource("2_7no3f")]
-gameMode = 1
+[node name="Manager" parent="." index="2"]
 chance_agent_p = 1.0
 slingshot_agent_p = 1.0
-
-[node name="BarrelManager" type="Node2D" parent="Manager"]
-script = ExtResource("2_rmby1")
-
-[node name="Barrel" parent="Manager/BarrelManager" instance=ExtResource("3_oyisj")]
-position = Vector2(1, 0)
-
-[node name="Barrel2" parent="Manager/BarrelManager" instance=ExtResource("3_oyisj")]
-position = Vector2(78, 1)
-
-[node name="Barrel3" parent="Manager/BarrelManager" instance=ExtResource("3_oyisj")]
-position = Vector2(153, 1)
-
-[node name="Barrel4" parent="Manager/BarrelManager" instance=ExtResource("3_oyisj")]
-position = Vector2(224, 1)
-
-[node name="Slingshot" parent="Manager" instance=ExtResource("5_fy8uw")]
-position = Vector2(-144, -32)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(78, -72)
-zoom = Vector2(1.695, 1.695)
-
-[node name="Starting Fishes" type="Node2D" parent="."]
-
-[node name="fish" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(-6, -8)
-
-[node name="fish2" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(6, -7)
-
-[node name="fish3" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(2, 15)
-
-[node name="fish4" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(70, -10)
-
-[node name="fish5" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(85, 15)
-
-[node name="fish6" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(145, -14)
-
-[node name="fish7" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(161, -13)
-
-[node name="fish8" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(144, 14)
-
-[node name="fish9" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(160, 14)
-
-[node name="fish10" parent="Starting Fishes" instance=ExtResource("5_nin11")]
-position = Vector2(230, 2)

@@ -9,36 +9,31 @@ anchors_preset = 0
 script = ExtResource("1_dy4ol")
 gameMode = 2
 
-[node name="Turn Button" type="Button" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Turn Button" type="Button" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = 300.0
-offset_top = -253.0
-offset_right = 394.0
-offset_bottom = -222.0
+offset_left = -139.0
+offset_top = 15.0
+offset_right = -13.0
+offset_bottom = 76.0
 grow_horizontal = 0
 text = "Finish Turn"
 
-[node name="Exit Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -239.0
-offset_top = -253.0
-offset_right = -145.0
-offset_bottom = -222.0
-grow_horizontal = 0
+[node name="Exit Button" type="Button" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 16.0
+offset_right = 149.0
+offset_bottom = 84.0
 text = "Exit"
 
-[node name="PlayerInfo" type="Label" parent="."]
-layout_mode = 0
-offset_left = 327.0
-offset_top = -205.0
-offset_right = 367.0
-offset_bottom = -182.0
+[node name="PlayerInfo" type="Label" parent="CanvasLayer"]
+offset_left = 1015.0
+offset_top = 137.0
+offset_right = 1055.0
+offset_bottom = 160.0
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -47,5 +42,5 @@ use_threads = true
 timeout = 2.0
 script = ExtResource("3_qkbf6")
 
-[connection signal="button_down" from="Turn Button" to="." method="_end_move"]
-[connection signal="button_up" from="Exit Button" to="." method="_exit_to_menu"]
+[connection signal="button_down" from="CanvasLayer/Turn Button" to="." method="_end_move"]
+[connection signal="button_up" from="CanvasLayer/Exit Button" to="." method="_exit_to_menu"]
