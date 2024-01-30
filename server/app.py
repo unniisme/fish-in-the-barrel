@@ -2,6 +2,7 @@ from flask import Flask, request
 import json
 from database_handler import Database
 from datetime import datetime
+from time import time
 
 def Info(message : str):
     print(f"[INFO][{datetime.now()}] {message}")
@@ -10,7 +11,7 @@ def Error(message : str):
     print(f"[ERROR][{datetime.now()}] {message}")
 
 app = Flask(__name__)
-db = Database()
+db = Database(f"data/{time()}")
 
 Info("starting server")
 

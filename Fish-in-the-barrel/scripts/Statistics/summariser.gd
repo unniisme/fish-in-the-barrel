@@ -16,6 +16,8 @@ var send_queue : Array = []
 
 func _ready():
 	
+	timeout = 5
+	
 	connect("request_completed", _handle_request_completed)
 	
 #	set_http_proxy(server_address, 5000)
@@ -27,6 +29,7 @@ static func _encode_dict(table : String, data : Dictionary):
 func _send_data(table : String, data : Dictionary):
 	# Push message to queue
 	send_queue.push_back([table, data])
+	cancel_request()
 	_send_data_dequeue()
 
 func _send_request(table : String, data : Dictionary) -> Error:

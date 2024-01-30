@@ -1,0 +1,126 @@
+{
+	"1706634038.27958": {
+		"level": "INFO",
+		"message": "Booting GameStats and Summariser"
+	},
+	"1706634322.87384": {
+		"level": "INFO",
+		"message": "Booting GameStats and Summariser"
+	},
+	"1706634322.87443": {
+		"level": "INFO",
+		"message": "1PlayerLevel"
+	},
+	"1706635174.18768": {
+		"level": "INFO",
+		"message": "Booting GameStats and Summariser"
+	},
+	"1706635178.41365": {
+		"level": "DEBUG",
+		"message": "[chance agent] alpha = 0.69251942379349"
+	},
+	"1706635226.00859": {
+		"level": "INFO",
+		"message": "Booting GameStats and Summariser"
+	},
+	"1706635226.01155": {
+		"level": "INFO",
+		"message": "AILevelEasy"
+	},
+	"1706635231.31872": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635233.06014": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635357.37275": {
+		"level": "INFO",
+		"message": "Booting GameStats and Summariser"
+	},
+	"1706635357.37575": {
+		"level": "INFO",
+		"message": "AILevelEasy"
+	},
+	"1706635361.18223": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635364.16916": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635370.42613": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635372.41191": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635379.43646": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635381.42225": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635389.18104": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635392.16756": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635395.88846": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635397.87379": {
+		"level": "INFO",
+		"message": "Updating game state"
+	},
+	"1706635407.01752": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635409.00333": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635412.22338": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635414.20918": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635417.11221": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635419.09853": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635420.96687": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635422.95289": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635423.66969": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	},
+	"1706635426.82333": {
+		"level": "INFO",
+		"message": "Updating game moves"
+	}
+}

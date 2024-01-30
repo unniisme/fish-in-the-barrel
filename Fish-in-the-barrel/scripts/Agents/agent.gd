@@ -6,7 +6,7 @@ var problem : FishProblem
 func _init(problem : FishProblem):
 	self.problem = problem
 	
-func _asser_answer_consistency(answer : Array):
+func _assert_answer_consistency(answer : Array):
 	print("Move: ", answer)
 	var hit_max_barrel = false
 	for entry in answer:
@@ -50,6 +50,6 @@ func get_move() -> Array[int]:
 				break
 			last_index -= 1
 	
-	_asser_answer_consistency(outlist)
+	_assert_answer_consistency(outlist)
 	return outlist
 	
