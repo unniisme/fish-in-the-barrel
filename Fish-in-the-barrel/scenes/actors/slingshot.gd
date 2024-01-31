@@ -18,6 +18,7 @@ var shoot_velocity = Vector2(0,0)
 @export var time_gap = 100
 @export var fade = 0.85	
 @export var draw_mod = 0.97 
+@export var trace_color : Color
 
 @onready var g_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 @onready var g = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -62,7 +63,8 @@ func _draw():
 		var t = i * time_gap
 		var pos = (0.5 * g_vector * t * t + draw_mod * shoot_velocity * t)/g
 	
-		var col = Color(0,0,0,alpha)
+		var col = trace_color
+		col.a = alpha
 		draw_circle(pos, 2, col)
 		alpha *= fade
 	

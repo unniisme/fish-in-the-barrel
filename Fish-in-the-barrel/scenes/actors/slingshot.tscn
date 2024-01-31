@@ -10,6 +10,7 @@ size = Vector2(20, 27)
 script = ExtResource("1_rcjeb")
 cutoff = 70
 force = 12
+trace_color = Color(1, 0, 0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5.5)

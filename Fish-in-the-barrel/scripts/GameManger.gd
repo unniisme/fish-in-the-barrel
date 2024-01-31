@@ -72,10 +72,13 @@ func _do_AI_move():
 	var move = agent.get_move()
 	var max_barrel = move.find(-1)
 	
+	await get_tree().create_timer(randf()).timeout
+	
+	
 	# Choose barrel
 	barrelManager.barrel_touched(max_barrel)
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(randf()+0.2).timeout
 	
 	# Fire into each required barrel
 	for i in range(max_barrel, move.size()):
@@ -84,7 +87,7 @@ func _do_AI_move():
 			slingShotAgent._do_slingshot(barrelManager.barrels[i])
 			await get_tree().create_timer(1).timeout
 			
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(randf()+0.2).timeout
 	
 	move_locked = false
 	_end_move()

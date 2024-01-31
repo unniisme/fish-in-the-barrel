@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cden31s011sea"]
+[gd_scene load_steps=4 format=3 uid="uid://cden31s011sea"]
 
+[ext_resource type="Script" path="res://scenes/actors/fish.gd" id="1_d2hgv"]
 [ext_resource type="Texture2D" uid="uid://cgjd1nrdxgkad" path="res://assets/fish_flying.png" id="1_heakq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2o33v"]
@@ -11,6 +12,7 @@ collision_layer = 3
 collision_mask = 3
 continuous_cd = 1
 can_sleep = false
+script = ExtResource("1_d2hgv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 0.000501639

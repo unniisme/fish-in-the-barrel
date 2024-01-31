@@ -38,7 +38,7 @@ func _toggle_lid():
 #	print(id, " ", count)
 	
 func _pop_fish():
-	get_overlapping_bodies()[0].queue_free()
+	get_overlapping_bodies()[0].kill()
 	
 #func _remove_fish(fish):
 #	count -= 1

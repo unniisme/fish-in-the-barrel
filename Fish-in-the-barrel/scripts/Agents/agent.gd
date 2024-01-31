@@ -14,6 +14,7 @@ func _assert_answer_consistency(answer : Array):
 			hit_max_barrel = true
 		
 		assert(hit_max_barrel or entry == 0, "Illegal entry %d"%entry)
+	
 	assert(hit_max_barrel, "No max barrel")
 
 # Function that returns the best move predicted by the agent

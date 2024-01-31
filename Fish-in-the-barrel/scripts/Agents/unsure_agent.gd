@@ -72,7 +72,7 @@ func get_move() -> Array[int]:
 			outlist[i] = 1
 		
 	
-	_asser_answer_consistency(outlist)
+	_assert_answer_consistency(outlist)
 	return outlist
 	
 func _toss(probability : float) ->  bool:
