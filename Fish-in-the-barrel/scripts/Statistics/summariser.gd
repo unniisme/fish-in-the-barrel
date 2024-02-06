@@ -10,7 +10,7 @@ const LOGLEVELS = {
 	ERROR = "ERROR"
 }
 
-@export var server_address : String = "http://0.0.0.0"
+@onready var server_address : String = GlobalManager.server_ip
 
 var send_queue : Array = []
 
@@ -56,6 +56,7 @@ func _send_data_dequeue() -> bool:
 func _log(message, level):
 	var log = { Time.get_unix_time_from_system() :
 				{
+					"username" : GlobalManager.username,
 					"message" : message,
 					"level" : level
 				}

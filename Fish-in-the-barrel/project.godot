@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Fish-in-the-barrel"
-run/main_scene="res://scenes/GUI/MainMenu.tscn"
+run/main_scene="res://scenes/GUI/login_screen.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalManager="*res://scripts/preloads/GlobalManager.gd"
 
 [display]
 

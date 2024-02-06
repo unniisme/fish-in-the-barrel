@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3ffh8e2h0fy"]
+
+[ext_resource type="Script" path="res://scenes/GUI/login_screen.gd" id="1_udp6i"]
+
+[node name="LoginScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_udp6i")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Username" type="TextEdit" parent="CenterContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -23.0
+offset_right = 95.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter Username"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="IP" type="TextEdit" parent="CenterContainer/VBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -23.0
+offset_right = 95.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter Server IP"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Startbutton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start"
