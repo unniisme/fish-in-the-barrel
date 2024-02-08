@@ -13,31 +13,16 @@ import json
 CERT = "ssl/cert.pem"
 KEY = "ssl/key.pem"
 
+SERVER = "https://13fb-14-139-174-50.ngrok-free.app"
+
 
 class CORSRequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Cross-Origin-Opener-Policy", "same-origin")
         self.send_header("Cross-Origin-Embedder-Policy", "require-corp")
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header('Set-Cookie', 'server-ip={}'.format(SERVER))
         super().end_headers()
-
-    def do_POST(self):
-        # Extract the content length
-        content_length = int(self.headers['Content-Length'])
-        # Read the POST data
-        post_data = self.rfile.read(content_length).decode('utf-8')
-        # Parse the POST data
-        post_params = parse_qs(post_data)
-        # Extract the values from the POST parameters
-        text_input1 = post_params.get('textInput1', [''])[0]
-        text_input2 = post_params.get('textInput2', [''])[0]
-        
-        # Set cookies
-        self.send_response(302)
-        self.send_header('Location', '/game.html')
-        self.send_header('Set-Cookie', 'Username={}'.format(text_input1))
-        self.send_header('Set-Cookie', 'IP={}'.format(text_input2))
-        self.end_headers()
 
 
 def shell_open(url):

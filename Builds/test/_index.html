@@ -6,19 +6,8 @@
 <title>Save as Cookie</title>
 </head>
 <body>
-  <script>
-    // Check if the "username" cookie exists
-    var usernameCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('username='));
-
-    if (usernameCookie) {
-      // If "username" cookie exists, redirect to game.html
-      window.location.href = 'game.html';
-    }
-  </script>
 
   <form id="cookieForm" action="game.html" method="post">
-    <label for="textInput1">username:</label><br>
-    <input type="text" id="textInput1" name="textInput1"><br>
     <label for="textInput2">server IP:</label><br>
     <input type="text" id="textInput2" name="textInput2"><br><br>
     <input type="submit" value="Submit">
@@ -28,7 +17,6 @@
     // Event listener for form submission
     document.getElementById("cookieForm").addEventListener("submit", function(event) {
       event.preventDefault();
-      var textInput1 = document.getElementById("textInput1").value;
       var textInput2 = document.getElementById("textInput2").value;
 
       // Submit form
