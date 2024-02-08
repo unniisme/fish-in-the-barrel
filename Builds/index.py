@@ -15,19 +15,14 @@ class handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def do_GET(self):
-        # Check if the requested path matches the path to the HTML file
-        if self.path == './test/index.html':
-            # Set the MIME type to text/html
-            self.send_response(200)
-            self.send_header('Content-type', 'text/html')
-            self.end_headers()
+        # Set the MIME type to text/html
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
 
-            # Open and read the HTML file
-            with open(os.path.join(os.getcwd(), 'test', 'index.html'), 'rb') as file:
-                html_content = file.read()
+        # Open and read the HTML file
+        with open(os.path.join(os.getcwd(), 'test', 'index.html'), 'rb') as file:
+            html_content = file.read()
 
-            # Write the HTML content to the response
-            self.wfile.write(html_content)
-        else:
-            # If the requested path doesn't match, serve the default behavior
-            super().do_GET()
+        # Write the HTML content to the response
+        self.wfile.write(html_content)
