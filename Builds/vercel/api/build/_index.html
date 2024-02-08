@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Save as Cookie</title>
+</head>
+<body>
+
+  <form id="cookieForm" action="game.html" method="post">
+    <label for="textInput2">server IP:</label><br>
+    <input type="text" id="textInput2" name="textInput2"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    // Event listener for form submission
+    document.getElementById("cookieForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var textInput2 = document.getElementById("textInput2").value;
+
+      // Submit form
+      this.submit();
+    });
+  </script>
+</body>
+</html>
