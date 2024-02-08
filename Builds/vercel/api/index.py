@@ -21,7 +21,7 @@ class handler(SimpleHTTPRequestHandler):
         self.end_headers()
 
         # Open and read the HTML file
-        with open(os.path.join(os.getcwd(), 'build', 'index.html'), 'rb') as file:
+        with open(os.path.join(os.getcwd(), 'build', 'game.html'), 'rb') as file:
             html_content = file.read()
 
         print(html_content)
