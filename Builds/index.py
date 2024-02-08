@@ -24,5 +24,7 @@ class handler(SimpleHTTPRequestHandler):
         with open(os.path.join(os.getcwd(), 'test', 'index.html'), 'rb') as file:
             html_content = file.read()
 
+        print(html_content)
+
         # Write the HTML content to the response
         self.wfile.write(html_content)
