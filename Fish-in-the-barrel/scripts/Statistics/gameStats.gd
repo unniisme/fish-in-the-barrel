@@ -15,6 +15,7 @@ var num_moves : int = 0
 func _ready():
 	
 	_log("Booting GameStats and Summariser", LOGLEVELS.INFO)
+	_send_game_state_data()
 	
 func _update_state(state : Array[int], player : String):
 	
@@ -31,3 +32,9 @@ func _update_move(move : Array[int]):
 func _summarise():
 	_log("Summarizing", LOGLEVELS.INFO)
 	_send_data(GlobalManager.username, {Time.get_unix_time_from_system() : game_states})
+	
+func _send_game_state_data():
+	_send_data(GlobalManager.username, {
+		"Username" : GlobalManager.username,
+		"Difficulty" : GlobalManager.difficulty
+	})

@@ -29,11 +29,44 @@ offset_right = 149.0
 offset_bottom = 84.0
 text = "Exit"
 
-[node name="PlayerInfo" type="Label" parent="CanvasLayer"]
-offset_left = 1015.0
-offset_top = 137.0
-offset_right = 1055.0
-offset_bottom = 160.0
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_top = 88.0
+offset_right = -6.0
+offset_bottom = 116.0
+grow_horizontal = 0
+
+[node name="Title" type="Label" parent="CanvasLayer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Currenly playing"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -142.0
+offset_top = 114.0
+offset_right = -6.0
+offset_bottom = 154.0
+grow_horizontal = 0
+
+[node name="PlayerInfo" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_alignment = 1
 autowrap_mode = 2
 

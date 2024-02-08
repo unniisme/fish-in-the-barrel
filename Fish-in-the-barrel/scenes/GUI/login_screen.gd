@@ -1,32 +1,58 @@
 extends Control
 
 var username : TextEdit
-var ip : TextEdit
-
 
 func _ready():
 	username = find_child("Username") as TextEdit
-	ip = find_child("IP") as TextEdit
 	
 	if FileAccess.file_exists("user://fishbarrel.save"):
 		var cookie = FileAccess.open("user://fishbarrel.save", FileAccess.READ)
-		var data = cookie.get_line()
-		username.text = data
+		var data = JSON.parse_string(cookie.get_line()) as Dictionary
+		if data.has("username"):
+			GlobalManager.username = data["username"] 
+			if data.has("difficulty"):
+				GlobalManager.difficulty = float(data["difficulty"])
+			else:
+				_set_difficulty()
+			_start()
 	
 	username.text_changed.connect(_handle_username_changed)
-	ip.text_changed.connect(_handle_ip_changed)
 	
 	find_child("Startbutton").button_up.connect(_start)
 	
 func _handle_username_changed():
 	GlobalManager.username = username.text
 	
-func _handle_ip_changed():
-	GlobalManager.server_ip = ip.text
-
 func _start():
-	get_tree().change_scene_to_file("res://scenes/GUI/MainMenu.tscn")
+	_set_difficulty()
+	get_tree().change_scene_to_file("res://scenes/ai_level_easy.tscn")
 	
 	var cookie = FileAccess.open("user://fishbarrel.save", FileAccess.WRITE)
-	var data = username.text
+	var data = JSON.stringify({
+		"username" : username.text,
+		"difficulty" : GlobalManager.difficulty
+		})
 	cookie.store_line(data)
+	
+	
+func _set_difficulty():
+	GlobalManager.difficulty = {
+		0 : 0.25,
+		1 : 0.75,
+		2 : 1
+	}[_random_sample([0.33, 0.33, 0.34])]
+
+
+func _random_sample(probabilities: Array[float]) -> int:
+	assert(probabilities.reduce(func(a,b): return a+b, 0) <= 1, "Distribution not valid")
+	
+	var random_value = randf()
+	var cumulative_prob = 0.0
+	
+	for i in range(probabilities.size()):
+		cumulative_prob += probabilities[i]
+		if random_value < cumulative_prob:
+			return i
+
+	# If the loop completes without selecting, return -1
+	return -1

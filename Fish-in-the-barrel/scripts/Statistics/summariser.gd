@@ -35,6 +35,7 @@ func _send_data(table : String, data : Dictionary):
 func _send_request(table : String, data : Dictionary) -> Error:
 	var send_data = _encode_dict(table, data)
 	var url = server_address + "/save"
+	print("[Sum] Sending data to " + url)
 	return request(url, [], HTTPClient.METHOD_POST, send_data)
 	
 func _send_data_dequeue() -> bool:

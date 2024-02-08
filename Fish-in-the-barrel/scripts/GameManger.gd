@@ -13,12 +13,12 @@ enum GAMEMODE {PVP, PVE, ONEPLAYER}
 
 ## Only for AI gamemodes 
 @export_category("AI properties")
-@export_range(0,1) var chance_agent_p : float
-@export_range(0,1) var slingshot_agent_p : float
+@export_range(0,1) var chance_agent_p : float = 1
+@export_range(0,1) var slingshot_agent_p : float = 1
 
 
 @onready var barrelManager : BarrelManager = $BarrelManager
-@onready var playerInfo : Label = $CanvasLayer/PlayerInfo
+@onready var playerInfo : Label = find_child("PlayerInfo")
 @onready var slingshot : Slingshot = $Slingshot
 @onready var stats : GameStats = $GameStats
 var agent : Agent
@@ -27,12 +27,11 @@ var slingShotAgent : SlingShotAgent
 var playing = false # true - player 0 playing. false - player 1 playing.
 var move_locked = false
 
-# Statistics
-
 func _ready():
 	if gameMode == GAMEMODE.PVE:
 		agent = ChanceAgent.new(barrelManager.problem, 1)
-		agent._set_correct_probabilities(chance_agent_p)
+#		agent._set_correct_probabilities(chance_agent_p)
+		agent._set_correct_probabilities(GlobalManager.difficulty)
 		print("[chance agent] alpha = " + str(agent.alpha))
 		stats._log(
 			"[chance agent] alpha = " + str(agent.alpha),
@@ -123,7 +122,7 @@ func _end_move():
 func _currently_playing():
 	match gameMode:
 		GAMEMODE.PVE:
-			return "Human Player" if playing else "AI Player"
+			return GlobalManager.username if playing else "AI Player"
 		GAMEMODE.ONEPLAYER:
 			return "Singleplayer"
 	return "Player 0" if playing else "Player 1"
@@ -141,4 +140,5 @@ func _exit_to_menu():
 	
 #	stats._wait_for_empty_queue()
 	
-	get_tree().change_scene_to_file("res://scenes/GUI/MainMenu.tscn")
+#	get_tree().change_scene_to_file("res://scenes/GUI/MainMenu.tscn")
+	get_tree().quit()
