@@ -7,12 +7,15 @@ import sys
 import argparse
 import subprocess
 
+SERVER = "https://13fb-14-139-174-50.ngrok-free.app"
+
 
 class CORSRequestHandler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Cross-Origin-Opener-Policy", "same-origin")
         self.send_header("Cross-Origin-Embedder-Policy", "require-corp")
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header('Set-Cookie', 'server-ip={}'.format(SERVER))
         super().end_headers()
 
 
@@ -45,7 +48,7 @@ if __name__ == "__main__":
     browser_parser.add_argument(
         "-n", "--no-browser", help="don't open default web browser automatically", dest="browser", action="store_false"
     )
-    parser.set_defaults(browser=True)
+    parser.set_defaults(browser=False)
     args = parser.parse_args()
 
     # Change to the directory where the script is located,
