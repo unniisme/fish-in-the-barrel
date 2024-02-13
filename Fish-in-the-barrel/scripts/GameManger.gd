@@ -86,7 +86,7 @@ func _do_AI_move():
 			slingShotAgent._do_slingshot(barrelManager.barrels[i])
 			await get_tree().create_timer(1).timeout
 			
-	await get_tree().create_timer(randf()+0.2).timeout
+	await get_tree().create_timer(randf()).timeout
 	
 	move_locked = false
 	_end_move()
@@ -114,7 +114,7 @@ func _end_move():
 		print(_currently_playing(), " won")
 		
 		## Switch scene back to main menu
-		_exit_to_menu()
+		_exit_to_menu(true)
 		return
 		
 	if made_move:
@@ -133,11 +133,16 @@ func update_problem(problem : FishProblem):
 	if agent:
 		agent.problem = problem
 		
-func _exit_to_menu():
+func _exit_to_menu(game_over = false):
 	print("Quiting to main menu")
 	
 	## Send summary
 	stats._summarise()
 	
-	GlobalManager.current_winner = _currently_playing()
+	await stats.all_requests_completed
+	
+	if game_over:
+		GlobalManager.current_winner = _currently_playing() + " won"
+	else:
+		GlobalManager.current_winner = ""
 	get_tree().change_scene_to_file("res://scenes/GUI/end_screen.tscn")
