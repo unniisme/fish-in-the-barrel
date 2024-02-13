@@ -115,6 +115,7 @@ func _end_move():
 		
 		## Switch scene back to main menu
 		_exit_to_menu()
+		return
 		
 	if made_move:
 		_handle_player_action()

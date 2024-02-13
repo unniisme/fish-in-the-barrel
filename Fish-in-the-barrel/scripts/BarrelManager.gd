@@ -12,15 +12,27 @@ var barrels : Array[Barrel] = []
 
 func _ready():
 	for child in get_children():
-		var barrel := child as Barrel # Typecast nonsense
-		barrels.append(barrel)
+		if child is Barrel:
+			barrels.append(child)
 	N = barrels.size() 
 		
 	for i in range(N):
 		barrels[i].id = i
 		
+	var initial_barrel_counts : Array[int] = []
+	for i in range(N):
+		# 1-8 fishes in each barrel
+		initial_barrel_counts.append(GlobalManager.random_sample_normalised(
+			[1,4,5,5,5,4,2,1]
+		))
+		barrels[i].spawn_fishes(initial_barrel_counts[-1])
+		
 	# Initialize problem
-	problem = FishProblem.new(N, barrels)
+	problem = $FishProblem
+	problem.n = N
+	problem.barrels = barrels
+	
+	problem._barrel_count_cache = initial_barrel_counts # Override
 	print(problem)
 	
 	_connect_barrels()
@@ -57,7 +69,7 @@ func barrel_touched(id : int):
 
 func handle_action() -> bool:
 	if state == STATE.INIT:
-		problem._update_barrel_cache()
+#		problem._update_barrel_cache()
 		
 		state = STATE.CHOOSING
 		get_parent().update_problem(problem) # update in problem manager

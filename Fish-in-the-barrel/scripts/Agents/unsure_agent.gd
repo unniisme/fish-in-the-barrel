@@ -51,7 +51,7 @@ func get_move() -> Array[int]:
 		barrel_choose_distribution[max_barrel] = max_probability
 		
 	print("[unsure] choose dist = " + str(barrel_choose_distribution))
-	var max_barrel_chosen = _random_sample(barrel_choose_distribution)
+	var max_barrel_chosen = GlobalManager.random_sample(barrel_choose_distribution)
 	if max_barrel_chosen == -1: #Only occurs if max barrel is the only choice
 		max_barrel_chosen = max_barrel
 	
@@ -80,19 +80,6 @@ func _toss(probability : float) ->  bool:
 	
 	return randf() < probability
 	
-func _random_sample(probabilities: Array[float]) -> int:
-	assert(probabilities.reduce(func(a,b): return a+b, 0) <= 1, "Distribution not valid")
-	
-	var random_value = randf()
-	var cumulative_prob = 0.0
-	
-	for i in range(probabilities.size()):
-		cumulative_prob += probabilities[i]
-		if random_value < cumulative_prob:
-			return i
-
-	# If the loop completes without selecting, return -1
-	return -1
 	
 func _set_correct_probabilities(p : float):
 	print("[unsure_agent][_set_correct_p] p = " + str(p))

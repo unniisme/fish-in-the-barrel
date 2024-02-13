@@ -61,4 +61,30 @@ shape = SubResource("RectangleShape2D_vhlyk")
 position = Vector2(0, 18)
 barrel = NodePath("..")
 
+[node name="Spawnpoints" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Spawnpoints"]
+position = Vector2(-10, -18)
+
+[node name="Node2D2" type="Node2D" parent="Spawnpoints"]
+position = Vector2(9, -18)
+
+[node name="Node2D3" type="Node2D" parent="Spawnpoints"]
+position = Vector2(-10, -6)
+
+[node name="Node2D4" type="Node2D" parent="Spawnpoints"]
+position = Vector2(9, -6)
+
+[node name="Node2D5" type="Node2D" parent="Spawnpoints"]
+position = Vector2(-10, 8)
+
+[node name="Node2D6" type="Node2D" parent="Spawnpoints"]
+position = Vector2(9, 9)
+
+[node name="Node2D7" type="Node2D" parent="Spawnpoints"]
+position = Vector2(-10, 20)
+
+[node name="Node2D8" type="Node2D" parent="Spawnpoints"]
+position = Vector2(9, 20)
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]

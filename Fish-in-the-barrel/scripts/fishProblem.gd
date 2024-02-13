@@ -1,4 +1,4 @@
-class_name FishProblem
+class_name FishProblem extends Node2D
 
 const RAND_MIN : int = 1
 const RAND_MAX : int = 7
@@ -10,10 +10,6 @@ var n : int
 var barrels : Array[Barrel]
 var _barrel_count_cache : Array[int]
 
-func _init(n : int, barrels : Array[Barrel]):
-	self.n = n
-	self.barrels = barrels
-	_update_barrel_cache()
 		
 func _update_barrel_cache():
 	self._barrel_count_cache = []
@@ -23,9 +19,6 @@ func _update_barrel_cache():
 func _get_count(barrel_id : int) -> int:
 	# Returns the number of fishes in the given barrel, at the current state of the problem
 	return _barrel_count_cache[barrel_id]
-
-func copy() -> FishProblem:
-	return FishProblem.new(self.n, self.barrels)
 
 func is_over() -> bool:
 #	return self.barrels.reduce(func(a,b): return a.get_count()+b.get_count(), 0) == 0

@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/BarrelManager.gd" id="2_sikug"]
 [ext_resource type="Texture2D" uid="uid://bhdtpuve21ngk" path="res://assets/Berie's_Adventure_Seaside_Asset_Pack_Free/Spritesheet/tilemap_new_softy_sand.png" id="2_y5nvf"]
 [ext_resource type="PackedScene" uid="uid://d3cp2anhi7fll" path="res://scenes/actors/barrel.tscn" id="3_6v651"]
-[ext_resource type="PackedScene" uid="uid://cden31s011sea" path="res://scenes/actors/fish.tscn" id="4_l0d0q"]
 [ext_resource type="PackedScene" uid="uid://s2neidorv43e" path="res://scenes/actors/slingshot.tscn" id="5_6jksl"]
+[ext_resource type="Script" path="res://scripts/fishProblem.gd" id="6_ayk6y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jbx7"]
 texture = ExtResource("2_y5nvf")
@@ -101,43 +101,14 @@ position = Vector2(153, 15)
 [node name="Barrel4" parent="Manager/BarrelManager" instance=ExtResource("3_6v651")]
 position = Vector2(224, 15)
 
+[node name="FishProblem" type="Node2D" parent="Manager/BarrelManager"]
+script = ExtResource("6_ayk6y")
+
 [node name="Slingshot" parent="Manager" instance=ExtResource("5_6jksl")]
 position = Vector2(-144, -32)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(78, -72)
 zoom = Vector2(1.695, 1.695)
-
-[node name="Starting Fishes" type="Node2D" parent="."]
-
-[node name="fish" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(-7, 9)
-
-[node name="fish2" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(5, 10)
-
-[node name="fish3" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(1, 32)
-
-[node name="fish4" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(69, 7)
-
-[node name="fish5" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(84, 32)
-
-[node name="fish6" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(144, 3)
-
-[node name="fish7" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(160, 4)
-
-[node name="fish8" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(143, 31)
-
-[node name="fish9" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(159, 31)
-
-[node name="fish10" parent="Starting Fishes" instance=ExtResource("4_l0d0q")]
-position = Vector2(229, 19)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,9 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3w5es14xksy"]
+[gd_scene load_steps=3 format=3 uid="uid://b3w5es14xksy"]
 
 [ext_resource type="PackedScene" uid="uid://bjdvunmehsq6l" path="res://scenes/ai_level_easy.tscn" id="1_n1qk2"]
+[ext_resource type="PackedScene" uid="uid://cden31s011sea" path="res://scenes/actors/fish.tscn" id="2_lxglp"]
 
 [node name="AILevelHard" instance=ExtResource("1_n1qk2")]
 
 [node name="Manager" parent="." index="2"]
 chance_agent_p = 1.0
 slingshot_agent_p = 1.0
+
+[node name="Starting Fishes" type="Node2D" parent="." index="4"]
+
+[node name="fish" parent="Starting Fishes" index="0" instance=ExtResource("2_lxglp")]
+position = Vector2(-7, 9)
+
+[node name="fish2" parent="Starting Fishes" index="1" instance=ExtResource("2_lxglp")]
+position = Vector2(5, 10)
+
+[node name="fish3" parent="Starting Fishes" index="2" instance=ExtResource("2_lxglp")]
+position = Vector2(1, 32)
+
+[node name="fish4" parent="Starting Fishes" index="3" instance=ExtResource("2_lxglp")]
+position = Vector2(69, 7)
+
+[node name="fish5" parent="Starting Fishes" index="4" instance=ExtResource("2_lxglp")]
+position = Vector2(84, 32)
+
+[node name="fish6" parent="Starting Fishes" index="5" instance=ExtResource("2_lxglp")]
+position = Vector2(144, 3)
+
+[node name="fish7" parent="Starting Fishes" index="6" instance=ExtResource("2_lxglp")]
+position = Vector2(160, 4)
+
+[node name="fish8" parent="Starting Fishes" index="7" instance=ExtResource("2_lxglp")]
+position = Vector2(143, 31)
+
+[node name="fish9" parent="Starting Fishes" index="8" instance=ExtResource("2_lxglp")]
+position = Vector2(159, 31)
+
+[node name="fish10" parent="Starting Fishes" index="9" instance=ExtResource("2_lxglp")]
+position = Vector2(229, 19)

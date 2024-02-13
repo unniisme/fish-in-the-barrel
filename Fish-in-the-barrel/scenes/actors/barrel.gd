@@ -61,3 +61,9 @@ func _on_input_event(viewport, event : InputEvent, shape_idx):
 		emit_signal("touched", self.id)
 
 
+func spawn_fishes(n : int):
+	for spawnpoint in find_child("Spawnpoints").get_children().slice(0,n):
+		var fish = GameResources.fish_scene.instantiate()
+		add_child(fish)
+		fish.position = spawnpoint.position
+		
