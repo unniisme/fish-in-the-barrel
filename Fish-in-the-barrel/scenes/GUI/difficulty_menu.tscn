@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7x40a6m3lvnv"]
+
+[ext_resource type="Script" path="res://scenes/GUI/difficulty_menu.gd" id="1_luikt"]
+
+[node name="DifficultyMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_luikt")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "Choose your difficulty level"
+
+[node name="HSlider" type="HSlider" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SliderVal" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Very Easy"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"

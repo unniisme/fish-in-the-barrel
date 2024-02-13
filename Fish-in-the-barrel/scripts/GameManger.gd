@@ -138,7 +138,5 @@ func _exit_to_menu():
 	## Send summary
 	stats._summarise()
 	
-#	stats._wait_for_empty_queue()
-	
-#	get_tree().change_scene_to_file("res://scenes/GUI/MainMenu.tscn")
-	get_tree().quit()
+	GlobalManager.current_winner = _currently_playing()
+	get_tree().change_scene_to_file("res://scenes/GUI/end_screen.tscn")
