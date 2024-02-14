@@ -28,6 +28,8 @@ var playing = false # true - player 0 playing. false - player 1 playing.
 var move_locked = false
 
 func _ready():
+	AudioManager.play("BGM")
+	
 	if gameMode == GAMEMODE.PVE:
 		agent = ChanceAgent.new(barrelManager.problem, 1)
 #		agent._set_correct_probabilities(chance_agent_p)
@@ -135,6 +137,7 @@ func update_problem(problem : FishProblem):
 		
 func _exit_to_menu(game_over = false):
 	print("Quiting to main menu")
+	AudioManager.stop()
 	
 	## Send summary
 	stats._summarise()

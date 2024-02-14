@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameResources="*res://scripts/preloads/GameResources.gd"
 GlobalManager="*res://scripts/preloads/GlobalManager.gd"
+AudioManager="*res://scripts/preloads/audio_manager.tscn"
 
 [display]
 

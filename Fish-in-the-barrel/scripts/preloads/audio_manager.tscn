@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd05j6m45coua"]
+
+[ext_resource type="Script" path="res://scripts/preloads/audio_manager.gd" id="1_gp1ci"]
+[ext_resource type="AudioStream" uid="uid://yf0jeldcfkc3" path="res://assets/Audio/2019-01-10_-_Land_of_8_Bits_-_Stephen_Bennett_-_FesliyanStudios.com.mp3" id="2_03qty"]
+[ext_resource type="AudioStream" uid="uid://dlq0nf0k0x6px" path="res://assets/Audio/slimejump-6913.mp3" id="3_nycea"]
+[ext_resource type="AudioStream" uid="uid://r57j42eiadrc" path="res://assets/Audio/086123_slingshot-81843.mp3" id="4_ii31v"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_gp1ci")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_03qty")
+volume_db = -9.58
+
+[node name="Splat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nycea")
+volume_db = 3.418
+
+[node name="Sling" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ii31v")

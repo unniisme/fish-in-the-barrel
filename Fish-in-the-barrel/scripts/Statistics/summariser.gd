@@ -59,6 +59,7 @@ func _send_data_dequeue() -> bool:
 		pileup += 1
 		send_queue.push_front(msg)
 		return false
+	print("[Sum] sending message : " + str(msg))
 	return true
 		
 	
@@ -75,7 +76,6 @@ func _log(message, level):
 			}
 	_send_data("log", log)
 	log_uid += 1
-	print(log)
 	
 func wait_dequeue():
 	await get_tree().create_timer(1).timeout

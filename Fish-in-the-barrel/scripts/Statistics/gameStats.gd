@@ -14,8 +14,8 @@ var num_moves : int = 0
 
 func _ready():
 	
-	_log("Booting GameStats and Summariser", LOGLEVELS.INFO)
 	_send_game_state_data()
+	_log("Booting GameStats and Summariser", LOGLEVELS.INFO)
 	
 func _update_state(state : Array[int], player : String):
 	
